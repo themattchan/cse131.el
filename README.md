@@ -6,7 +6,7 @@ in [CSE 131](https://github.com/ucsd-cse131/)
 ```elisp
 (require 'cse131)
 (add-to-list 'auto-mode-alist
-             `(,(regexp-opt '(".adder$" ".boa$" ".cobra$" ".diamond$" ".egg$" ".fdl$")) . cse131-mode))
+             `(,(regexp-opt '(".adder" ".boa" ".cobra" ".diamond" ".egg" ".fdl")) . cse131-mode))
 ```
 
 To insert a lambda (λ), do `C-M-y` (same as Racket mode)
