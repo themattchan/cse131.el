@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2016  Matthew Chan
 
-;; Author: Matthew Chan
+;; Author: Matthew Chan <mattchan@ucsd.edu>
 ;; Keywords: extensions
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -112,4 +112,4 @@
 ;;   0)
 
 (provide 'cse131)
- ;;; sample.el ends here
+ ;;; cse131.el ends here
