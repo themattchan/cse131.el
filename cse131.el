@@ -26,15 +26,12 @@
 
  ;;; Code:
 
-(defvar cse131-mode-map
-  (let ((map (make-sparse-keymap))
-        (lambda-char (make-char 'greek-iso8859-7 107)))
-    (define-key map "M-C-y"
-      '(lambda ()
-         (interactive)
-         (insert-char lambda-char 1)))
-    map)
-  "Keymap for `cse131-mode'.")
+
+;; (defvar cse131-mode-map
+;;   (let ((lambda-char (make-char 'greek-iso8859-7 107)))
+
+;;     map)
+;;   "Keymap for `cse131-mode'.")
 
 (defvar cse131-constants
   '( "true"     "false"
@@ -51,24 +48,37 @@
   `((
      ;; stuff between double quotes
      ("\"\\.\\*\\?" . font-lock-string-face)
-     ;; ; : , ; { } =>  @ $ = are all special elements
-     (,(string-join '(":" "," "(" ")" "=" "+" "-" "*") "\\|") . font-lock-keyword-face)
-     ( ,(regexp-opt cse131-keywords 'words) . font-lock-builtin-face)
-     ( ,(regexp-opt cse131-constants 'words) . font-lock-constant-face)
+
+     ( ,(string-join '(":" "," "(" ")" ) "\\|")
+       . font-lock-builtin-face)
+
+     ( ,(string-join '("=" "+" "-" "*")  "\\|")
+       . font-lock-warning-face)
+
+     ( ,(regexp-opt cse131-keywords 'words)
+       . font-lock-keyword-face)
+
+     ( ,(regexp-opt cse131-constants 'words)
+       . font-lock-constant-face)
+
+     ( ,(rx symbol-start "def" (1+ space) (group (1+ (or word ?_))))
+       . font-lock-function-name-face)
+
      )))
 
 (defvar cse131-tab-width 2)
 (defvar cse131-indent-tab nil)
+(defvar cse131-lambda-char (make-char 'greek-iso8859-7 107))
 
  ;;;###autoload
-(define-derived-mode cse131-mode python-mode "CSE 131"
+(define-derived-mode cse131-mode fundamental-mode "CSE 131"
   "A major mode for editing CSE131 source files.
 \\{cse131-mode-map}"
 
   ;; :syntax-table cse131-mode-syntax-table
 
-  (setq-local comment-start "//")
-  (setq-local comment-start-skip "//+\\s-*")
+  (setq-local comment-start "\/\/")
+  (setq-local comment-start-skip "\/\/+\\s-*")
 
   (setq-local tab-width             cse131-tab-width)
   (setq-local indent-tabs-mode      cse131-indent-tab)
@@ -77,8 +87,13 @@
 
   ;;(setq-local imenu-generic-expression  sample-imenu-generic-expression)
   ;;(setq-local outline-regexp sample-outline-regexp)
+  (define-key cse131-mode-map (kbd "C-M-y")
+    '(lambda ()
+       (interactive)
+       (insert-char cse131-lambda-char 1)))
 
   )
+
 
  ;;; Indentation
 
