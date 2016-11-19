@@ -71,7 +71,7 @@
 (defvar cse131-lambda-char (make-char 'greek-iso8859-7 107))
 
  ;;;###autoload
-(define-derived-mode cse131-mode fundamental-mode "CSE 131"
+(define-derived-mode cse131-mode fundamental-mode "cse131-mode"
   "A major mode for editing CSE131 source files.
 \\{cse131-mode-map}"
 
