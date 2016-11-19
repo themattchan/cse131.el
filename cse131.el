@@ -26,13 +26,6 @@
 
  ;;; Code:
 
-
-;; (defvar cse131-mode-map
-;;   (let ((lambda-char (make-char 'greek-iso8859-7 107)))
-
-;;     map)
-;;   "Keymap for `cse131-mode'.")
-
 (defvar cse131-constants
   '( "true"     "false"
      "add1"     "sub1"     "isNum"    "isBool"   "print"
@@ -77,8 +70,12 @@
 
   ;; :syntax-table cse131-mode-syntax-table
 
-  (setq-local comment-start "\/\/")
-  (setq-local comment-start-skip "\/\/+\\s-*")
+  ;; (setq-local comment-start "//")
+  ;; (setq-local comment-start-skip "//+\\s-*")
+
+  (modify-syntax-entry ?/ ". 124b" cse131-mode-syntax-table)
+  (modify-syntax-entry ?* ". 23"   cse131-mode-syntax-table)
+  (modify-syntax-entry ?\n "> b"   cse131-mode-syntax-table)
 
   (setq-local tab-width             cse131-tab-width)
   (setq-local indent-tabs-mode      cse131-indent-tab)
