@@ -61,6 +61,7 @@
 
 (defvar cse131-tab-width 2)
 (defvar cse131-indent-tab nil)
+(defvar cse131-comment-style "// ")
 (defvar cse131-lambda-char (make-char 'greek-iso8859-7 107))
 
  ;;;###autoload
@@ -80,6 +81,7 @@
   (setq-local tab-width             cse131-tab-width)
   (setq-local indent-tabs-mode      cse131-indent-tab)
   (setq-local font-lock-defaults    cse131-font-lock-defaults)
+  (setq-local comment-start         cse131-comment-style)
   ;;  (setq-local indent-line-function 'cse131-indent-line)
 
   ;;(setq-local imenu-generic-expression  sample-imenu-generic-expression)
@@ -91,6 +93,9 @@
 
   )
 
+ ;;;###autoload
+(add-to-list 'auto-mode-alist
+             `(,(regexp-opt '(".adder" ".boa" ".cobra" ".diamond" ".egg" ".fdl")) . cse131-mode))
 
  ;;; Indentation
 
